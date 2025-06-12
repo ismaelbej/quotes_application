@@ -26,26 +26,26 @@ void main() {
       );
     });
 
-    test("should return a quote from data source", () async {
+    test("should return a random quote from data source", () async {
       when(
-        () => quotesDataSource.getQuote(),
+        () => quotesDataSource.getRandomQuote(),
       ).thenAnswer((_) => Future.value(Success(quoteModel)));
 
-      final result = await quotesRepository.getQuote();
+      final result = await quotesRepository.getRandomQuote();
 
       expect(result, Success(quote));
-      verify(() => quotesDataSource.getQuote()).called(1);
+      verify(() => quotesDataSource.getRandomQuote()).called(1);
     });
 
     test("should return an error from data source", () async {
       when(
-        () => quotesDataSource.getQuote(),
+        () => quotesDataSource.getRandomQuote(),
       ).thenAnswer((_) => Future.value(Error(UnknownError())));
 
-      final result = await quotesRepository.getQuote();
+      final result = await quotesRepository.getRandomQuote();
 
       expect(result, Error(UnknownError()));
-      verify(() => quotesDataSource.getQuote()).called(1);
+      verify(() => quotesDataSource.getRandomQuote()).called(1);
     });
   });
 }

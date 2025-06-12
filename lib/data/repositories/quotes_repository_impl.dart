@@ -10,8 +10,14 @@ class QuotesRepositoryImpl implements QuotesRepository {
   QuotesRepositoryImpl({required this.quotesDataSource});
 
   @override
-  Future<Result<Quote, Exception>> getQuote() async {
-    final result = await quotesDataSource.getQuote();
+  Future<Result<Quote, Exception>> getRandomQuote() async {
+    final result = await quotesDataSource.getRandomQuote();
+    return result.mapSuccess((quoteModel) => quoteModel.toQuote());
+  }
+
+  @override
+  Future<Result<Quote, Exception>> getQuoteBy(String author) async {
+    final result = await quotesDataSource.getQuoteBy(author);
     return result.mapSuccess((quoteModel) => quoteModel.toQuote());
   }
 }

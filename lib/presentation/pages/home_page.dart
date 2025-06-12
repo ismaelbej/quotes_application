@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.read<QuoteViewModel>()..loadQuote(),
-        tooltip: 'Increment',
+        tooltip: 'New quote',
         child: const Icon(Icons.repeat),
       ),
     );

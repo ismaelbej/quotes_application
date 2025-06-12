@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:quotes_application/domain/entities/quote.dart';
-import 'package:quotes_application/domain/usecases/get_quote_use_case.dart';
+import 'package:quotes_application/domain/usecases/get_random_quote_use_case.dart';
 
 part 'quote_view_model_state.dart';
 
 class QuoteViewModel extends ChangeNotifier {
-  final GetQuoteUseCase getQuoteUseCase;
+  final GetRandomQuoteUseCase getQuoteUseCase;
 
   late QuoteViewModelState _state;
 
