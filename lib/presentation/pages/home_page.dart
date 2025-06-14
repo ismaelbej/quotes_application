@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quotes_application/presentation/models/quote_view_model.dart';
+import 'package:quotes_application/presentation/widgets/quote.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.title});
@@ -18,7 +19,8 @@ class HomePage extends StatelessWidget {
         builder: (BuildContext context, value, Widget? child) {
           String text = "";
           String author = "";
-          Color? color = Theme.of(context).textTheme.headlineMedium?.color;
+          Color color =
+              Theme.of(context).textTheme.headlineMedium?.color ?? Colors.black;
 
           switch (value.state) {
             case QuoteViewModelStateLoading():
@@ -31,28 +33,7 @@ class HomePage extends StatelessWidget {
               text = error.toString();
               break;
           }
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  text,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.headlineMedium?.copyWith(color: color),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Text(author),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
+          return Quote(text: text, author: author, color: color);
         },
       ),
       floatingActionButton: FloatingActionButton(

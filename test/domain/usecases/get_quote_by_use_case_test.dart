@@ -1,5 +1,4 @@
 import 'package:quotes_application/core/errors/no_quote.dart';
-import 'package:quotes_application/core/errors/unknown_error.dart';
 import 'package:quotes_application/domain/entities/quote.dart';
 import 'package:quotes_application/domain/repositories/quotes_repository.dart';
 import 'package:quotes_application/domain/usecases/get_quote_by_use_case.dart';
@@ -11,11 +10,9 @@ class MockQuotesRepository extends Mock implements QuotesRepository {}
 
 void main() {
   group("GetQuoteByUseCase", () {
-    late QuotesRepository quotesRepository = MockQuotesRepository();
+    late QuotesRepository quotesRepository;
 
-    late GetQuoteByUseCase getQuoteByUseCase = GetQuoteByUseCase(
-      quotesRepository: quotesRepository,
-    );
+    late GetQuoteByUseCase getQuoteByUseCase;
 
     final quote = Quote(text: "To be or not to be", author: "W. Shakespeare");
 
@@ -32,7 +29,7 @@ void main() {
 
       final result = await getQuoteByUseCase(quote.author);
 
-      expect(result, Success(quote));
+      expect(result.tryGetSuccess()?.author, quote.author);
       verify(() => quotesRepository.getQuoteBy(quote.author)).called(1);
     });
 

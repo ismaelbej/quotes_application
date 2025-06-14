@@ -10,11 +10,9 @@ class MockQuotesRepository extends Mock implements QuotesRepository {}
 
 void main() {
   group("GetRandomQuoteUseCase", () {
-    late QuotesRepository quotesRepository = MockQuotesRepository();
+    late QuotesRepository quotesRepository;
 
-    late GetRandomQuoteUseCase getRandomQuoteUseCase = GetRandomQuoteUseCase(
-      quotesRepository: quotesRepository,
-    );
+    late GetRandomQuoteUseCase getRandomQuoteUseCase;
 
     final quote = Quote(text: "To be or not to be", author: "W. Shakespeare");
 
